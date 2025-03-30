@@ -1,0 +1,706 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: Arial;
+    border: border-box;
+}
+
+/* Navbar */
+.navbar{
+    height: 60px;
+    background-color: #0f1111;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+/* Navbar Amazon Logo */
+.nav-logo
+{
+    height: 50px;
+    width: 100px;
+}
+.logo{
+    background-image: url("amazon_logo.png");
+    background-size: cover;
+    height: 50px;
+    width: 100px;
+}
+
+/* Navbar Delivery Address */
+.nav-address{
+    cursor: pointer;
+    transition: all 0.3s ease-in-out; /* Smooth effect */
+}
+.nav-address:hover {
+    color: orange;
+}
+.add-first{
+    color: #cccccc;
+    font-size: 0.85rem;
+    margin-left: 15px;
+}
+.add-second{
+    font-size: 1rem;
+    margin-left: 3px;
+}
+.add-icon{
+    display: flex;
+    align-items: center;
+}
+
+/* Navbar Search Area */
+.nav-search{
+    display: flex;
+    background-color: white;
+    width: 620px;
+    height: 40px;
+    border-radius: 5px;
+    justify-content: space-evenly;
+    border: 2px solid transparent;
+    transition: border 0.2s ease-in-out;
+    align-items: center;
+    overflow: hidden; /* Ensures uniform height */
+}
+/* Custom Dropdown */
+.custom-dropdown {
+    position: relative;
+    display: flex;
+    align-items: center;
+    background-color: #e6e6e6;
+    padding: 0 15px;
+    border-radius: 5px 0 0 5px;
+    cursor: pointer;
+    height: 100%;
+    color: #0f1111; /* Amazon's Dark Text */
+    font-size: 14px;
+    transition: background-color 0.2s ease-in-out;
+}
+/* "All" label (default text, always visible) */
+#selected-category {
+    font-size: 14px;
+    color: #0f1111;
+    margin-right: 6px;
+}
+/* Dropdown Arrow */
+.dropdown-arrow {
+    font-size: 12px;
+    color: #555;
+    position: relative;
+    top: 1px;
+}
+/* Hover Effect on "All" Label */
+.custom-dropdown:hover {
+    background-color: #d4d4d4; /* Darker Gray */
+}
+
+.search-select {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0; /* Keeps the dropdown functional but hidden */
+    cursor: pointer;
+}
+.search-input{
+    font-size: 1rem;
+    flex: 1; /* Makes input take remaining space */
+    height: 100%;
+    border: none;
+    padding: 0 10px;
+    outline: none;
+}
+.search-icon{
+    width: 45px;
+    height: 100%;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2rem;
+    background-color: rgba(255, 166, 0, 0.902);
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+    color: #0f1111;
+}
+.search-icon i {
+    font-size: 18px;
+    color: black;
+}
+.nav-search:hover{
+    border: 2px solid #ff9900;
+}
+/* Overlay Effect */
+#overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Dark Transparent Effect */
+    display: none; /* Initially Hidden */
+    z-index: 5; /* Behind the search bar */
+}
+
+/* Search Bar on Top of the Overlay */
+.nav-search {
+    position: relative;
+    z-index: 100; /* Above the overlay */
+}
+
+/* Language Selector */
+.nav-language {
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding: 8px;
+    border: 1px solid transparent;
+    cursor: pointer;
+}
+
+/* Language button */
+.language-btn {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    gap: 5px;
+}
+
+.language-btn span {
+    margin-right: 5px; /* Adds space between the language code and arrow */
+}
+
+/* Flag inside button */
+.language-btn img {
+    width: 20px;
+    height: 15px;
+    border-radius: 2px;
+}
+
+/* Dropdown */
+.language-dropdown {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: white;
+    width: 200px;
+    padding: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    z-index: 100;
+}
+
+/* List Styling */
+.language-dropdown ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* Dropdown Items */
+.language-dropdown ul li {
+    padding: 8px 12px;
+}
+
+/* Dropdown Links */
+.language-dropdown ul li a {
+    text-decoration: none;
+    color: #0f1111;
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+}
+
+/* Flags inside dropdown */
+.language-dropdown ul li a img {
+    width: 18px;
+    height: 12px;
+    margin-right: 8px;
+    border-radius: 2px;
+}
+
+/* Hover Effect */
+.nav-language:hover,
+.language-btn:hover {
+    color: orange;
+}
+
+.language-dropdown ul li a:hover {
+    color: #ff9900;
+}
+
+html[lang="fr"] body, html[lang="de"] body, html[lang="it"] body {
+    font-size: 0.95em; /* Slightly smaller */
+}
+html[lang="es"] body, html[lang="hi"] body {
+    font-size: 0.90em;  /* Hindi text is usually larger */
+}
+
+/* Navbar Sign-in Option */
+.nav-signin {
+    cursor: pointer;
+    position: relative;
+    padding: 10px;
+    font-size: 14px;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    border: 1px solid transparent;
+}
+
+/* Ensures Child Elements Also Change Color On Hover */
+.nav-signin:hover .nav-second,
+.nav-signin:hover span {
+    color: orange !important;
+}
+
+/* Small "Hello, sign in" text */
+.nav-signin span {
+    font-size: 12px;
+    color: #cccccc;
+}
+
+/* Bold "Account & Lists" text */
+.nav-second {
+    font-size: 14px;
+    font-weight: 700;
+    color: white;
+    display: flex;
+    align-items: center;
+}
+
+/* ▼ Icon next to "Account & Lists" */
+.nav-signin .nav-second::after {
+    content: " ▾";
+    font-size: 20px;
+    margin-left: 3px;
+    position: relative;
+    top: 2px;
+    color: inherit;
+}
+
+/* Overlay Effect */
+#signin-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Dark Transparent Effect */
+    display: none; /* Initially Hidden */
+    z-index: 5; /* Below the navbar */
+    display: none;
+}
+
+/* Dropdown Menu */
+.signin-dropdown {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: white;
+    width: 450px;
+    height: auto;
+    padding: 15px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s ease-in-out, visibility 0.2s ease-in-out;
+    z-index: 100;
+}
+
+/* Amazon Sign-in Button */
+.signin-header {
+    text-align: center;
+    padding: 10px 0;
+}
+
+/* "New Customer? Start Here" */
+.signin-header p {
+    font-size: 13px;
+    margin-top: 10px;
+    color: #333; /* Dark gray */
+}
+.signin-header p a {
+    color: #007185;
+    font-weight: bold;
+    text-decoration: none;
+}
+.signin-header p a:hover {
+    text-decoration: underline;
+}
+.signin-button {
+    display: block;
+    background-color: #f0c14b;
+    color: black;
+    text-align: center;
+    padding: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-bottom: 5px;
+}
+
+/* Container for Your Lists & Your Account */
+.dropdown-content {
+    display: flex;
+    justify-content: space-between; /* Align sections side by side */
+    gap: 20px;
+}
+
+/* Individual Sections */
+.dropdown-section {
+    width: 48%; /* Each section takes equal width */
+}
+
+.dropdown-section p {
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: black;
+}
+
+.dropdown-section ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.dropdown-section ul li {
+    padding: 5px 0;
+}
+
+.dropdown-section ul li a {
+    text-decoration: none;
+    color: #007185;
+    font-size: 13px;
+}
+.dropdown-section ul li a:hover {
+    text-decoration: underline;
+    color: #C7511F;
+}
+
+/* Border Lines */
+hr {
+    border: none;
+    height: 1px;
+    background-color: #ddd;
+    margin: 10px 0;
+}
+
+/* Show dropdown when hovering over signin or dropdown itself */
+.nav-signin:hover + .signin-dropdown,
+.signin-dropdown:hover {
+    opacity: 1;
+    visibility: visible;
+}
+.nav-signin:hover #signin-overlay {
+    display: block;
+}
+
+/* Navbar Returns and Order */
+.nav-returns{
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+/* Apply hover effect to both "Returns" and "& Orders" together */
+.nav-returns:hover,
+.nav-returns:hover .nav-second {
+    color: orange;
+}
+
+/* Navbar Cart */
+.nav-cart i {
+    font-size: 25px;
+}
+.nav-cart{
+    font-size: 0.85rem;
+    font-weight: 700;
+    display: flex;
+    display: inline;
+    align-items: center; 
+    gap: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out; /* Smooth effect */
+}
+.nav-cart:hover {
+    transform: scale(1.1); /* Slight zoom on hover */
+    color: orange;
+}
+
+/* Pannael */
+.pannel{
+    height: 40px;
+    background-color: #222f3d;
+    display: flex;
+    color: white;
+    align-items: center;
+    justify-content: space-evenly;
+}
+.pannel-options p {
+    display: inline;
+    margin-left: 15px;
+}
+.pannel-options{
+    width: 70%;
+    font-size: 0.85rem;
+}
+.pannel-deals{
+    font-weight: 700;
+}
+.pannel-options p:hover {
+    color: #ff9900;
+    cursor: pointer;
+}
+
+/* Hero Section */
+.hero-section {
+    width: 100%;
+    height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-slider {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.slide {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top;  /* Crops only from the bottom */
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+}
+
+.slide.active {
+    opacity: 1;
+}
+
+/* Navigation Arrows */
+.prev, .next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    cursor: pointer;
+    padding: 10px 15px;
+    font-size: 18px;
+    border-radius: 5px;
+}
+
+.prev { left: 10px; }
+.next { right: 10px; }
+
+.prev:hover, .next:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+/* Dots Navigation */
+.dots-container {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 8px;
+}
+
+.dot {
+    width: 10px;
+    height: 10px;
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.dot.active {
+    background-color: white;
+}
+
+.dot:hover {
+    transform: scale(1.2);
+}
+
+/* Hero Message */
+.hero-msg {
+    background-color: white;
+    color: black;
+    height: 40px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    font-size: 0.85rem;
+    width: 95%;
+    margin-bottom: 28px;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.hero-msg a {
+    color: #007185;
+    cursor: pointer;
+    text-decoration: none;
+    transition: color 0.3s ease-in-out, text-shadow 0.3s ease-in-out;
+}
+
+.hero-msg a:hover {
+    color: #00515f;
+    text-shadow: 0px 0px 8px rgba(0, 113, 133, 0.5);
+}
+
+/* Shopping Section */
+.shop-section{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    background-color: #e2e7e6;
+}
+.box{
+    height: 400px;
+    width: 23%;
+    background-color: white;
+    padding: 20px 0px 15px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    border-radius: 8px;
+}
+.box-img{
+    height: 300px;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    background-size: cover;
+}
+.box-content{
+    margin-left: 1rem;
+    margin-right: 1rem;
+}
+.box-content p{
+    color: #007185;
+    cursor: pointer;
+}
+.box:hover {
+    transform: scale(1.05); /* Slight zoom effect */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+
+/* Footer Back to Top */
+.foot-pannel1 {
+    background-color: #37475a;
+    color: white;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: small;
+    cursor: pointer;
+}
+
+/* Back to Top Button */
+.back-to-top {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.2s ease-in-out;
+}
+
+.back-to-top:hover {
+    color: #ff9900; /* Amazon-style hover */
+}
+
+/* Footer */
+.foot-pannel2{
+    background-color: #222f3d;
+    color: white;
+    height: 300px;
+    display: flex;
+    justify-content: space-evenly;
+}
+ul{
+    margin-top: 40px;
+}
+.foot-pannel2 a{
+    display: block;
+    font-size: smaller;
+    margin-top: 10px;
+    color: #dddddd;
+    transition: 0.3s ease-in-out;
+    cursor: pointer;
+}
+.foot-pannel2 a:hover {
+    color: orange; /* Highlight on hover */
+    text-decoration: underline;
+}
+
+/* Footer Logo */
+.foot-pannel3{
+    background-color: #222f3d;
+    color: white;
+    border-top: 0.5px solid gray;
+    height: 70px;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+.logo{
+    background-image: url("amazon_logo.png");
+    background-size: cover;
+    height: 50px;
+    width: 80px;
+}
+
+/* Footer Copyrights */
+.foot-pannel4{
+    background-color: #0f1111;
+    color: white;
+    height: 100px;
+    font-size: 0.7rem;
+    text-align: center;
+}
+.pages{
+    padding-top: 25px;
+}
+.copyright{
+    padding-top: 5px;
+}
+
+/* Footer Supriya */
+.watermark{
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    background-color: #37475a;
+    color: white;
+    height: 30px;
+    width: 100%;
+    display: flex;
+}
